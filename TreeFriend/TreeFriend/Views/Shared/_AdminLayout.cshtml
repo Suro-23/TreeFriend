@@ -1,0 +1,45 @@
+﻿@{
+    var userId = Context.User.Claims.FirstOrDefault(x => x.Type == "UserId");
+    var userLevel = Context.User.Claims.FirstOrDefault(x => x.Type == "Level");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理員頁面</title>
+    <link rel="stylesheet" href="~/css/Reset.css">
+    <link rel="stylesheet" href="~/css/Admin/AdminHome.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ol class="head-list">
+                <li>@userId ，@userLevel </li>
+                <li><a href="@Url.Action("HomePage","Home")">Home</a></li>
+                <li><a href="@Url.Action("ProductPage","Home")">講座</a></li>
+            </ol>
+        </nav>
+    </header>
+    <div class="main" id="test">
+        <div class="nav-list">
+            <ul>
+                <li><a href="./Admin/AddProduct">基本類修改</a></li>
+                <li>講座管理</li>
+                <li>系統推文</li>
+            </ul>
+        </div>
+        <div class="content" id="content">
+            @RenderBody()
+        </div>
+    </div>
+
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

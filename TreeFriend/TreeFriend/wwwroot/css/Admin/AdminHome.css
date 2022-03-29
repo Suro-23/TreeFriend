@@ -1,0 +1,57 @@
+﻿@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+
+* {
+    font-family: "cwTeXYen", "Roboto", sans-serif;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+}
+
+header {
+    background-color: antiquewhite;
+    width: 100%;
+    height: 8%;
+}
+
+
+
+.main {
+    display: flex;
+    width: 100%;
+    height: 92%;
+}
+
+/* 導覽列設計 */
+.nav-list {
+    width: 12%;
+    height: 100%;
+    /* background-color: black; */
+    color: rgb(83, 83, 83);
+}
+
+    .nav-list ul li {
+        font-size: 1.5em;
+        padding: 0.5em;
+    }
+
+        .nav-list ul li:hover {
+            background-color: rgb(192, 194, 194);
+            color: rgb(255, 255, 255);
+            transition: all 0.2s;
+        }
+
+header nav ol {
+    display: flex;
+}
+
+/* 分頁內容 */
+.content {
+    width: 100%;
+    display: flex;
+    padding: 2%;
+    /* flex-direction: column; */
+}
