@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\專題Code\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {}
+    "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\專題Code\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {
+    "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\專題Code\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+        "projectUniqueName": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
         "projectName": "TreeFriend",
-        "projectPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\專題Code\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+        "projectPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
         "packagesPath": "C:\\Users\\edc54\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\專題Code\\TreeFriend\\TreeFriend\\obj\\",
+        "outputPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\edc54\\AppData\\Roaming\\NuGet\\NuGet.Config",

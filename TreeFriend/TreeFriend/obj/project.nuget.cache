@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "L31mqPGzic3ASROCfCHNVRpsgzGj05ZuIdKCphtJxp4dZi+HfwjgaPo8Tbnji7q+1F7hzBdlrDxCoDuz6M45+g==",
+  "dgSpecHash": "KnHgWUifD58wXVZG6Ms6Qjf01N50gLpi/+vui9W8w1sCyd3pqH/iwQ2PvjU6d0R2/bGhh/v1utfdi+4Np9UaSQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\專題Code\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+  "projectFilePath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\edc54\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\edc54\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
