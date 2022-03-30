@@ -25,11 +25,13 @@ namespace TreeFriend.Models.Entity {
         /// </summary>
         [Required]
         public bool UserLevel { get; set; } = false;
-
+        
+        //設定GetDate()，自動取的時間
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
+        //[Required]
         public DateTime CreateDate { get; set; }
 
+        public virtual UserDetail UserDetail { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Hashtag> Hashtags { get; set; }
         public virtual ICollection<Product> Products { get; set; }

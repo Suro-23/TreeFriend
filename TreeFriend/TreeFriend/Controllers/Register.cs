@@ -118,7 +118,7 @@ namespace TreeFriend.Controllers {
         public async Task<IActionResult> Login([FromBody] UserLoginViewModel model) {
             var check = _context.users.Where(x => x.Email == model.Email && x.Password == model.Password )
                 .FirstOrDefault();
-
+            //設定身分
             var UserLevel = check.UserLevel == true ? "Admin" : "Member";
 
             if (check == null) {

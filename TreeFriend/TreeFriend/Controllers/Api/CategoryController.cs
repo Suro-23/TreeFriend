@@ -20,6 +20,7 @@ namespace TreeFriend.Controllers.Api {
         }
 
         //新增使用者
+        [AllowAnonymous]
         [Route("CreateUser")]
         [HttpPost]
         public string CreateUser([FromBody] User user) {
@@ -50,6 +51,10 @@ namespace TreeFriend.Controllers.Api {
         [Route("AddCategory")]
         [HttpPost]
         public bool AddCategory([FromBody] Category category) {
+            //取的當前使用者ID
+            var UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+            category.UserId = UserId;
+            //寫入資料庫
             var AddCategory = category;
             try {
                 _db.categories.Add(AddCategory);
@@ -101,6 +106,10 @@ namespace TreeFriend.Controllers.Api {
         [Route("AddHashTag")]
         [HttpPost]
         public bool AddTag([FromBody] Hashtag hashtag) {
+            //取的當前使用者ID
+            var UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+            hashtag.UserId = UserId;
+            //寫入資料庫
             var AddCategory = hashtag;
             try {
                 _db.hashtags.Add(hashtag);
