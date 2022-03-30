@@ -18,20 +18,35 @@
 <body>
     @*<header>
         <nav>
-            <ol class="head-list">
-                <li>@userId ，@userLevel </li>
-                <li><a href="@Url.Action("HomePage","Home")">Home</a></li>
-                <li><a href="@Url.Action("ProductPage","Home")">講座</a></li>
-            </ol>
+        <ol class="head-list">
+        <li>@userId ，@userLevel </li>
+        <li><a href="@Url.Action("HomePage","Home")">Home</a></li>
+        <li><a href="@Url.Action("ProductPage","Home")">講座</a></li>
+        </ol>
         </nav>
-    </header>*@
+        </header>*@
     <header>
         <a href="@Url.Action("HomePage","Home")"><img src="~/icon/Logo.png" alt="" class="logo"></a>
         <nav>
             <ul>
+                @if (User.IsInRole("Admin")) {
+                    <li><a href="@Url.Action("AddCategory","Admin")">管理員</a></li>
+                }
                 <li><a href="@Url.Action("ProductPage","Home")">講座</a></li>
                 <li>提醒</li>
-                @*<li>登入</li>*@
+                @{
+                    if (Context.User.Identity.IsAuthenticated) {
+                        var imgPath = "." + Context.User.Claims.FirstOrDefault(c => c.Type == "Headshot").Value;
+
+                        <li>
+                            <a herf="#" class="headshot">
+                                <img src="@imgPath" alt="">
+                            </a>
+                        </li>
+                    } else {
+                        <li><a href="@Url.Action("Create","Register")">登入</a></li>
+                    }
+                }
             </ul>
         </nav>
     </header>

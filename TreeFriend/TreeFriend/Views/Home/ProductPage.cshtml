@@ -5,12 +5,28 @@
 <link rel="stylesheet" href="~/css/ProductPage.css" />
 
 <header>
-    <img src="~/icon/Logo.png" alt="" class="logo">
+    <a href="@Url.Action("HomePage","Home")">
+        <img src="~/icon/Logo.png" alt="" class="logo">
+    </a>
     <nav>
         <ul>
             <li>講座</li>
             <li>提醒</li>
-            <li>登入</li>
+            <li>
+                @{
+                    if (Context.User.Identity.IsAuthenticated) {
+                        var imgPath = "." + Context.User.Claims.FirstOrDefault(c => c.Type == "Headshot").Value;
+
+                    <li>
+                        <a herf="#" class="headshot">
+                            <img src="@imgPath" alt="">
+                        </a>
+                    </li>
+                    } else {
+                    <li><a href="@Url.Action("Create","Register")">登入</a></li>
+                    }
+                }
+            </li>
         </ul>
     </nav>
 </header>

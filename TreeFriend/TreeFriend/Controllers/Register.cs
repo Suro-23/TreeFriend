@@ -53,20 +53,6 @@ namespace TreeFriend.Controllers {
             }
         }
 
-        //public IActionResult SameEmail([FromBody] SameEmail sameEmail)
-        //{
-        //    var check = _context.users.Where(x => x.Email == sameEmail.Email)
-        //       .FirstOrDefault();
-        //    if (check == null)
-        //    {
-        //        return Ok("註冊成功");
-        //    }
-        //    else
-        //    {
-        //        return BadRequest("帳號已被使用");
-        //    }
-        //}
-
         // GET: Register/Create
         [AllowAnonymous]
         public IActionResult Create() {
@@ -74,30 +60,25 @@ namespace TreeFriend.Controllers {
         }
 
         // POST: Register/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
         //[ValidateAntiForgeryToken]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] User user) {
-            //if(user.Email!=0)
-            //var register = _context.users.Where(x => x.Email != user.Email && x.Phone != user.Phone).FirstOrDefault();
-            //if (register == null)
-            //{
-            //    _context.Add(user);
-            //}
-            //if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Phone))
-            //{
-            //    return Content ("請輸入資料");
-            //}
-            //else
-            //{
             if (user.Email != "" && user.Password != "") {
                 var register = _context.users.Where(x => x.Email == user.Email).FirstOrDefault();
                 if (register == null) {
                     if (ModelState.IsValid) {
                         _context.Add(user);
                         await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(AfterRegister));
+
+                        //YP : 註冊時順便寫入使用者基本資訊
+                        var _user = _context.users.Where(u => u.Email == user.Email).FirstOrDefault();
+                        var UserDetail = new UserDetail() { UserId = _user.UserId };
+                        _context.Add(UserDetail);
+                        await _context.SaveChangesAsync();
+
+                        //YP : 註冊成功後轉跳至登入
+                        return RedirectToAction(nameof(Create));
+                        //return RedirectToAction(nameof(AfterRegister));
                     }
                     return View(user);
                 } else {
@@ -107,10 +88,10 @@ namespace TreeFriend.Controllers {
                 return Content("資料有誤");
             }
         }
-        //}
 
         public IActionResult AfterRegister() {
-            return View();
+            //YP :測試時修改過路徑
+            return View("../Home/HomePage");
         }
 
         [HttpPost]
@@ -118,7 +99,10 @@ namespace TreeFriend.Controllers {
         public async Task<IActionResult> Login([FromBody] UserLoginViewModel model) {
             var check = _context.users.Where(x => x.Email == model.Email && x.Password == model.Password )
                 .FirstOrDefault();
-            //設定身分
+
+            //YP : 登入時順便檢查身分，並獲得頭像
+            var img = _context.usersDetail.Where(u => u.UserId == check.UserId).FirstOrDefault();
+
             var UserLevel = check.UserLevel == true ? "Admin" : "Member";
 
             if (check == null) {
@@ -126,9 +110,11 @@ namespace TreeFriend.Controllers {
             } else {
                 var claims = new List<Claim>()
                 {
+                    //YP : 確認身分後cookie綁定權限
                     new Claim(ClaimTypes.Email,check.Email),
                     new Claim("UserId",check.UserId.ToString()),
-                    new Claim(ClaimTypes.Role,UserLevel)
+                    new Claim(ClaimTypes.Role,UserLevel),
+                    new Claim("Headshot",img.HeadshotPath)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -143,6 +129,7 @@ namespace TreeFriend.Controllers {
                     ExpiresUtc = DateTime.UtcNow.AddMinutes(20)
                 });
 
+                //YP : 登入成功後轉跳回首頁
                 return Json(Url.Action("HomePage", "Home"));
             }
 

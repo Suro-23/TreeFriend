@@ -9,14 +9,17 @@ namespace TreeFriend.Models.Entity {
         public int UserId { get; set; }
 
         public string UserName { get; set; }
-
+        
         public bool Sex { get; set; }
 
-        public DateTime Birthday { get; set; }
+        public DateTime Birthday { get; set; } = DateTime.UtcNow;
 
         public string SelfIntrodution { get; set; }
 
-        public string HeadshotPath { get; set; } = "~/icon/headshot.jpg";
+        public string HeadshotPath { get; set; } = "./icon/headshot.jpg";
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime UpdateTime { get; set; }
 
         public User User { get; set; }
     }

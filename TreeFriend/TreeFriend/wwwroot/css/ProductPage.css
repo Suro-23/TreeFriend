@@ -2,7 +2,30 @@
     margin: 0;
     padding: 0;
     list-style: 0;
+    font-size: 14px;
 }
+
+/*YP : Scrollbar樣式*/
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #a8bbbf;
+    }
+/***************************/
+
 
 header {
     height: 55px;
@@ -13,7 +36,7 @@ header {
 }
 
     header .logo {
-        width: 150px;
+        height: 100%;
     }
 
     header nav {
@@ -31,6 +54,15 @@ header {
                 padding: 0 .5rem;
             }
 
+.headshot {
+    display: flex;
+    align-items: center;
+}
+
+    .headshot img {
+        width: 50px;
+        border-radius: 100%;
+    }
 
 
 .box {

@@ -11,6 +11,8 @@ namespace TreeFriend.Models {
         public DbSet<User> users { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<Hashtag> hashtags { get; set; }
+        
+        public DbSet<UserDetail> usersDetail { get; set; }
 
 
 
@@ -26,6 +28,10 @@ namespace TreeFriend.Models {
 
             modelBuilder.Entity<Product>()
                 .Property(p => p.StarDate)
+                .HasDefaultValueSql("getdate()");
+
+            modelBuilder.Entity<UserDetail>()
+                .Property(u => u.UpdateTime)
                 .HasDefaultValueSql("getdate()");
         }
     }

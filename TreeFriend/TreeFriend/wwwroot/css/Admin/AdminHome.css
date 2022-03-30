@@ -20,7 +20,7 @@ header {
 }
 
     header .logo {
-        width: 150px;
+        height: 100%;
     }
 
     header nav {
@@ -37,6 +37,16 @@ header {
             header nav ul li {
                 padding: 0 .5rem;
             }
+
+.headshot {
+    display: flex;
+    align-items: center;
+}
+
+    .headshot img {
+        width: 50px;
+        border-radius: 100%;
+    }
 
 
 .main {
