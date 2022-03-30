@@ -16,7 +16,7 @@ namespace TreeFriend.Models.Entity {
 
         public string SelfIntrodution { get; set; }
 
-        public string HeadshotPath { get; set; }
+        public string HeadshotPath { get; set; } = "~/icon/headshot.jpg";
 
         public User User { get; set; }
     }

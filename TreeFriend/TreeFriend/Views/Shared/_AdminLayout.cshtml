@@ -16,13 +16,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-    <header>
+    @*<header>
         <nav>
             <ol class="head-list">
                 <li>@userId ，@userLevel </li>
                 <li><a href="@Url.Action("HomePage","Home")">Home</a></li>
                 <li><a href="@Url.Action("ProductPage","Home")">講座</a></li>
             </ol>
+        </nav>
+    </header>*@
+    <header>
+        <a href="@Url.Action("HomePage","Home")"><img src="~/icon/Logo.png" alt="" class="logo"></a>
+        <nav>
+            <ul>
+                <li><a href="@Url.Action("ProductPage","Home")">講座</a></li>
+                <li>提醒</li>
+                @*<li>登入</li>*@
+            </ul>
         </nav>
     </header>
     <div class="main" id="test">
