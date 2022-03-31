@@ -7249,19 +7249,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\edc54\\.nuget\\packages\\": {}
+    "C:\\Users\\Tibame_T14\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+      "projectUniqueName": "C:\\Users\\Tibame_T14\\OneDrive\\文件\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
       "projectName": "TreeFriend",
-      "projectPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
-      "packagesPath": "C:\\Users\\edc54\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\obj\\",
+      "projectPath": "C:\\Users\\Tibame_T14\\OneDrive\\文件\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+      "packagesPath": "C:\\Users\\Tibame_T14\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tibame_T14\\OneDrive\\文件\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\edc54\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tibame_T14\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7320,12 +7320,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7334,7 +7328,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
