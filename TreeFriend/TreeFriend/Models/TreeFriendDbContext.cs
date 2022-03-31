@@ -11,8 +11,9 @@ namespace TreeFriend.Models {
         public DbSet<User> users { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<Hashtag> hashtags { get; set; }
-        
         public DbSet<UserDetail> usersDetail { get; set; }
+        public DbSet<PersonalPost> personalPosts { get; set; }
+        public DbSet<PersonalPostMessage> personalPostMessages { get; set; }
 
 
 
@@ -33,6 +34,19 @@ namespace TreeFriend.Models {
             modelBuilder.Entity<UserDetail>()
                 .Property(u => u.UpdateTime)
                 .HasDefaultValueSql("getdate()");
+
+            modelBuilder.Entity<PersonalPost>()
+                .Property(p => p.CreateDate)
+                .HasDefaultValueSql("getdate()");
+
+            modelBuilder.Entity <PersonalPostMessage>()
+                .Property(p => p.CreateDate)
+                .HasDefaultValueSql("getdate()");
+
+            //modelBuilder.Entity<PersonalPostMessage>()
+            //    .HasOne(p => p.User).WithMany()
+            //    .HasForeignKey(t => t.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
