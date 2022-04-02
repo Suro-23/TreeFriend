@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TreeFriend.Models.Entity {
-    public class PersonalPost {
+    public class SkillPost {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PersonalPostId { get; set; }
+        public int SkillPostId { get; set; }
 
         [ForeignKey("User")]
         [Required]
@@ -16,22 +16,21 @@ namespace TreeFriend.Models.Entity {
         [Required]
         public string Title { get; set; }
 
+        [ForeignKey("Category")]
         [Required]
-        public string Subtitle { get; set; }
+        public int CategoryId { get; set; }
+
+        [Required]
+        public string Region { get; set; }
 
         [Required]
         public string Content { get; set; }
 
-        [Required]
-        public string PostPhotoPath { get; set; }
-
-        //使用getdate()
         public DateTime CreateDate { get; set; }
 
-
         public virtual User User { get; set; }
-        //public virtual ICollection<PersonalPostMessage> PersonalPostMessages { get; set; }
-
-
+        public virtual Category Category { get; set; }
+        public virtual ICollection<HashtagDetail> Hashtags { get; set; }
+        //public virtual ICollection<Hashtag> Hashtags { get; set; }
     }
 }

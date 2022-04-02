@@ -9,11 +9,11 @@ namespace TreeFriend.Models.Entity {
         public int MessageId { get; set; }
 
         [Required]
-        [ForeignKey("PersonalPost")]
+        //[ForeignKey("PersonalPost")]
         public int PersonalPostId { get; set; }
 
         [Required]
-        [ForeignKey("User")]
+        //[ForeignKey("User")]
         public int UserId { get; set; }
 
         [Required]
@@ -22,7 +22,7 @@ namespace TreeFriend.Models.Entity {
         public DateTime CreateDate { get; set; }
 
 
-        public virtual PersonalPost PersonalPost { get; set; }
-        public virtual User User { get; set; }
+        //public virtual PersonalPost PersonalPost { get; set; }
+        //public virtual User User { get; set; }
     }
 }

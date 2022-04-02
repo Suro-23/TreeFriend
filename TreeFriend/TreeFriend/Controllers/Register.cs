@@ -97,17 +97,17 @@ namespace TreeFriend.Controllers {
         [HttpPost]
         //[Authorize(Roles="admin")]
         public async Task<IActionResult> Login([FromBody] UserLoginViewModel model) {
-            var check = _context.users.Where(x => x.Email == model.Email && x.Password == model.Password )
+            var check = _context.users.Where(x => x.Email == model.Email && x.Password == model.Password)
                 .FirstOrDefault();
 
-            //YP : 登入時順便檢查身分，並獲得頭像
-            var img = _context.usersDetail.Where(u => u.UserId == check.UserId).FirstOrDefault();
-
-            var UserLevel = check.UserLevel == true ? "Admin" : "Member";
 
             if (check == null) {
                 return View("Create");
             } else {
+                //YP : 登入時順便檢查身分，並獲得頭像
+                var img = _context.usersDetail.Where(u => u.UserId == check.UserId).FirstOrDefault();
+
+                var UserLevel = check.UserLevel == true ? "Admin" : "Member";
                 var claims = new List<Claim>()
                 {
                     //YP : 確認身分後cookie綁定權限

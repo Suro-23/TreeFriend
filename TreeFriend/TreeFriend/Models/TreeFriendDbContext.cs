@@ -12,8 +12,10 @@ namespace TreeFriend.Models {
         public DbSet<Category> categories { get; set; }
         public DbSet<Hashtag> hashtags { get; set; }
         public DbSet<UserDetail> usersDetail { get; set; }
-        public DbSet<PersonalPost> personalPosts { get; set; }
-        public DbSet<PersonalPostMessage> personalPostMessages { get; set; }
+        public DbSet<HashtagDetail> hashtagDetails { get; set; }
+        public DbSet<SkillPost> skillPosts { get; set; }
+        //public DbSet<PersonalPost> personalPosts { get; set; }
+        //public DbSet<PersonalPostMessage> personalPostMessages { get; set; }
 
 
 
@@ -34,19 +36,31 @@ namespace TreeFriend.Models {
             modelBuilder.Entity<UserDetail>()
                 .Property(u => u.UpdateTime)
                 .HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<HashtagDetail>()
+                .HasKey(d => new { d.HashtagId, d.SkillPostId });
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.SkillPosts)
+                .WithOne(u => u.User)
+                .HasForeignKey(u => u.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<SkillPost>()
+                .HasMany(s => s.Hashtags)
+                .WithOne(s => s.SkillPost)
+                .HasForeignKey(s => s.SkillPostId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Hashtag>()
+                .HasMany(h => h.Hashtags)
+                .WithOne(h => h.Hashtag)
+                .HasForeignKey(h => h.HashtagId)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<PersonalPost>()
-                .Property(p => p.CreateDate)
-                .HasDefaultValueSql("getdate()");
+            //modelBuilder.Entity<PersonalPost>()
+            //    .Property(p => p.CreateDate)
+            //    .HasDefaultValueSql("getdate()");
 
-            modelBuilder.Entity <PersonalPostMessage>()
-                .Property(p => p.CreateDate)
-                .HasDefaultValueSql("getdate()");
-
-            //modelBuilder.Entity<PersonalPostMessage>()
-            //    .HasOne(p => p.User).WithMany()
-            //    .HasForeignKey(t => t.UserId)
-            //    .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity <PersonalPostMessage>()
+            //    .Property(p => p.CreateDate)
+            //    .HasDefaultValueSql("getdate()");
         }
     }
 }

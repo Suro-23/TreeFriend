@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace TreeFriend.Models.Entity {
     public class Hashtag {
@@ -14,5 +15,6 @@ namespace TreeFriend.Models.Entity {
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
+        public virtual ICollection<HashtagDetail> Hashtags { get; set; }
     }
 }
