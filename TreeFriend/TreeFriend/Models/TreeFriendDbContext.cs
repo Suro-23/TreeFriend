@@ -36,6 +36,11 @@ namespace TreeFriend.Models {
             modelBuilder.Entity<UserDetail>()
                 .Property(u => u.UpdateTime)
                 .HasDefaultValueSql("getdate()");
+
+            modelBuilder.Entity<SkillPost>()
+                .Property(p => p.CreateDate)
+                .HasDefaultValueSql("getdate()");
+
             modelBuilder.Entity<HashtagDetail>()
                 .HasKey(d => new { d.HashtagId, d.SkillPostId });
             modelBuilder.Entity<User>()
