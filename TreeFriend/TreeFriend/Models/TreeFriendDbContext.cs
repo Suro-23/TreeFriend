@@ -14,8 +14,8 @@ namespace TreeFriend.Models {
         public DbSet<UserDetail> usersDetail { get; set; }
         public DbSet<HashtagDetail> hashtagDetails { get; set; }
         public DbSet<SkillPost> skillPosts { get; set; }
-        //public DbSet<PersonalPost> personalPosts { get; set; }
-        //public DbSet<PersonalPostMessage> personalPostMessages { get; set; }
+        
+        public DbSet<SkillPostMessage> skillPostMessages{ get; set; }
 
 
 

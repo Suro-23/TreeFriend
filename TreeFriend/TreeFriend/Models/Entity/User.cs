@@ -31,6 +31,9 @@ namespace TreeFriend.Models.Entity {
         //[Required]
         public DateTime CreateDate { get; set; }
 
+        [Required]
+        public bool Status { get; set; } = true;
+
         public virtual UserDetail UserDetail { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Hashtag> Hashtags { get; set; }

@@ -17,6 +17,7 @@ namespace TreeFriend.Controllers.Api {
             _db = db;
         }
 
+        #region 技能貼文
         //新增技能貼文
         [HttpPost]
         [Route("AddSkillPost")]
@@ -48,5 +49,25 @@ namespace TreeFriend.Controllers.Api {
                 return "新增失敗";
             }
         }
+        #endregion
+
+        #region 留言
+
+        //加入留言
+        [HttpPost]
+        [Route("SkPostMessage")]
+        public void LiveSkillPostMessage([FromBody] SkillPostMessageViewModel skMessage) {
+            //拿到當前使用者資訊後將留言寫入技能留言資料表中
+            SkillPostMessage post = new SkillPostMessage() {
+                UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value),
+                Content = skMessage.Content,
+                SkillPostId = skMessage.SkillPostId
+            };
+            _db.skillPostMessages.Add(post);
+            _db.SaveChanges();
+        }
+
+        #endregion
+
     }
 }
