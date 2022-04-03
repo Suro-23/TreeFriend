@@ -17,9 +17,13 @@ namespace TreeFriend.Controllers.Api {
             _db = db;
         }
 
+        #region 技能貼文
+        //新增技能貼文
         [HttpPost]
         [Route("AddSkillPost")]
         public string AddSkillPost([FromBody] SkillPostViewModel skillPost) {
+
+            //將ViewModel資料對應至Entity中
             SkillPost post = new SkillPost() {
                 UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value),
                 Title = skillPost.Title,
@@ -29,11 +33,13 @@ namespace TreeFriend.Controllers.Api {
             };
 
             try {
+                //先將資料更新貼文，才能取得當前貼文ID
                 _db.skillPosts.Add(post);
                 _db.SaveChanges();
 
                 //拿到該使用者的最後一筆新增貼文的ID後
-                //存入標籤細節表，對應的標籤&貼文，多對多
+                //存入標籤細節表，對應的標籤&貼文
+                //TODO: 多對多
                 var PostId = _db.skillPosts.Where(p => p.UserId == post.UserId).ToList().LastOrDefault().SkillPostId;
                 _db.hashtagDetails.Add(new HashtagDetail { SkillPostId = PostId, HashtagId = skillPost.HashtagId });
                 _db.SaveChanges();
@@ -43,5 +49,25 @@ namespace TreeFriend.Controllers.Api {
                 return "新增失敗";
             }
         }
+        #endregion
+
+        #region 留言
+
+        //加入留言
+        [HttpPost]
+        [Route("SkPostMessage")]
+        public void LiveSkillPostMessage([FromBody] SkillPostMessageViewModel skMessage) {
+            //拿到當前使用者資訊後將留言寫入技能留言資料表中
+            SkillPostMessage post = new SkillPostMessage() {
+                UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value),
+                Content = skMessage.Content,
+                SkillPostId = skMessage.SkillPostId
+            };
+            _db.skillPostMessages.Add(post);
+            _db.SaveChanges();
+        }
+
+        #endregion
+
     }
 }

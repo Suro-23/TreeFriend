@@ -71,8 +71,10 @@ namespace TreeFriend.Controllers {
                         await _context.SaveChangesAsync();
 
                         //YP : 註冊時順便寫入使用者基本資訊
+                        //將使用者名稱預設為Email名稱
+                        string[] name = user.Email.Split('@');
                         var _user = _context.users.Where(u => u.Email == user.Email).FirstOrDefault();
-                        var UserDetail = new UserDetail() { UserId = _user.UserId };
+                        var UserDetail = new UserDetail() { UserId = _user.UserId, UserName = name[0] };
                         _context.Add(UserDetail);
                         await _context.SaveChangesAsync();
 

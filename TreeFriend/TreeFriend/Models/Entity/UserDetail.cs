@@ -12,7 +12,7 @@ namespace TreeFriend.Models.Entity {
         
         public bool Sex { get; set; }
 
-        public DateTime Birthday { get; set; } = DateTime.UtcNow;
+        public DateTime Birthday { get; set; } = DateTime.Now;
 
         public string SelfIntrodution { get; set; }
 
