@@ -5,9 +5,12 @@
 
 <div id="app" class="col-12 member-data">
     <div class="row profile-img-div">
-        <div class="col-4">
+        <div class="col-4 d-flex flex-column align-items-center">
             <img class="profile-img" :src="userInfo.headshotPath" alt="">
-            <input class="img-file" type="file">
+            <label for="file-upload" class="custom-file-upload">
+                <i class="fa fa-cloud-upload"></i> Custom Upload
+            </label>
+            <input id="file-upload" type="file" v-on:change="uploadImage" />
         </div>
         <div class="col-8 d-flex flex-column justify-content-between">
             <div class="row">
@@ -56,6 +59,7 @@
     let app = new Vue({
         el:"#app",
         data:{
+            formData: new FormData(),
             userInfo:{
                 userName: "",
                 sex: "",
@@ -75,7 +79,7 @@
             }).catch(err => {console.log(err)})
         },
         methods:{
-            editInfo:function(){
+            editInfo: function(){
                 const self = this;
                 axios.put("../Api/Member/UpdateUserInfo",self.userInfo)
                 .then(res =>{
@@ -83,6 +87,11 @@
                     location.reload();
                 })
                 .catch(err => {console.log(err.response.data)});
+            },
+            uploadImage: function(e){
+                this.formData.append("file",e.target.files[0]);
+                const self = this;
+                axios.post("../Api/Member/UploadFile",self.formData)
             }
         }
     });

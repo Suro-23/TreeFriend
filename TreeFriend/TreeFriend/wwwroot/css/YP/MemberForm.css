@@ -25,3 +25,15 @@
 .input-area {
     height: 10rem;
 }
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 0 solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 165px;
+}

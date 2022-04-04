@@ -5,6 +5,8 @@ using System.Linq;
 using System;
 using TreeFriend.Models.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace TreeFriend.Controllers.Api {
     [Authorize]
@@ -13,8 +15,12 @@ namespace TreeFriend.Controllers.Api {
     public class MemberController : ControllerBase {
         private readonly TreeFriendDbContext _db;
 
-        public MemberController(TreeFriendDbContext db) {
+        //設定上船路徑為根目錄 wwwroot\UploadHeadshot
+        private readonly string _folder;
+
+        public MemberController(TreeFriendDbContext db,IHostingEnvironment env) {
             _db = db;
+            _folder = $@"{env.WebRootPath}\UploadHeadshot";
         }
 
         //取得當前使用者基本資料
@@ -57,6 +63,19 @@ namespace TreeFriend.Controllers.Api {
             } catch (Exception) {
                 return "更新失敗";
             }
+        }
+
+        //上傳圖片
+        [Route("UploadFile")]
+        [HttpPost]
+        public string UploadFile(IFormFile file) {
+            if (file != null) {
+                var path = $@"{_folder}\User{HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value}_{file.FileName}";
+                using (var stream = new FileStream(path, FileMode.Create)) {
+                    file.CopyTo(stream);
+                }
+            }
+            return "上傳成功";
         }
     }
 }
