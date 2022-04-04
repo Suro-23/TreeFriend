@@ -18,7 +18,7 @@ namespace TreeFriend.Controllers.Api {
         //設定上船路徑為根目錄 wwwroot\UploadHeadshot
         private readonly string _folder;
 
-        public MemberController(TreeFriendDbContext db,IHostingEnvironment env) {
+        public MemberController(TreeFriendDbContext db, IHostingEnvironment env) {
             _db = db;
             _folder = $@"{env.WebRootPath}\UploadHeadshot";
         }
@@ -32,7 +32,7 @@ namespace TreeFriend.Controllers.Api {
             UserDetailViewModel userDetail = new UserDetailViewModel() {
                 UserName = memberInfo.UserName,
                 Birthday = memberInfo.Birthday.ToString("yyyy-MM-dd"),
-                Sex = memberInfo.Sex == true? "1":"0",
+                Sex = memberInfo.Sex == true ? "1" : "0",
                 SelfIntrodution = memberInfo.SelfIntrodution,
                 HeadshotPath = memberInfo.HeadshotPath
             };
@@ -55,7 +55,7 @@ namespace TreeFriend.Controllers.Api {
             try {
                 memberInfo.UserName = userVM.UserName;
                 memberInfo.Birthday = birthDay;
-                memberInfo.Sex = userVM.Sex == "1"? true:false;
+                memberInfo.Sex = userVM.Sex == "1" ? true : false;
                 memberInfo.HeadshotPath = userVM.HeadshotPath;
                 memberInfo.SelfIntrodution = userVM.SelfIntrodution;
                 _db.SaveChanges();
@@ -70,12 +70,14 @@ namespace TreeFriend.Controllers.Api {
         [HttpPost]
         public string UploadFile(IFormFile file) {
             if (file != null) {
-                var path = $@"{_folder}\User{HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value}_{file.FileName}";
+                string imgName = $@"User{ HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value}_{ file.FileName}";
+                var path = $@"{_folder}\{imgName}";
                 using (var stream = new FileStream(path, FileMode.Create)) {
                     file.CopyTo(stream);
+                    return $@"/UploadHeadshot/{imgName}";
                 }
             }
-            return "上傳成功";
+            return "未選擇圖片";
         }
     }
 }

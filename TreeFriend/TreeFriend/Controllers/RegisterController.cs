@@ -136,21 +136,12 @@ namespace TreeFriend.Controllers {
             }
 
         }
-        [HttpPost]
-        public async Task<IActionResult> Logout(UserLoginViewModel model) {
-            //var check = _context.users.Where(x => x.Email == model.Email && x.Password == model.Password)
-            //   .FirstOrDefault();
-            //if (check == null)
-            //{
-            //    return RedirectToAction("index", "Home");
-            //}
-            //else
-            //{
-            await HttpContext.SignOutAsync(
-        CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return Json(Url.Action("Index", "Home"));
-            //}
+        //YP : 改成GET方法，沒有傳入參數
+        [HttpGet]
+        public async Task<IActionResult> Logout() {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Json(Url.Action("HomePage", "Home"));
         }
 
 

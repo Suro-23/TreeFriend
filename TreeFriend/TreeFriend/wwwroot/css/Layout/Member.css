@@ -42,6 +42,7 @@
 
 .member-nav-list {
     padding: 1rem .7rem;
+    box-shadow: 0 0 .5rem .5rem rgb(221, 235, 247);
 }
 
 /***** 共同版面 *******/

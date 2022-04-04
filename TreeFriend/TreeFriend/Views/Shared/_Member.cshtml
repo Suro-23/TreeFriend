@@ -16,7 +16,7 @@
     @*<link rel="stylesheet" href="~/css/site.css" />*@
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-brown">
+    <nav id="header-nav" class="navbar navbar-expand-lg navbar-light bg-brown">
         <div class="container-fluid">
             <a href="@Url.Action("HomePage","Home")">
                 <img src="~/icon/Logo.png" alt="" class="logo">
@@ -45,8 +45,9 @@
                                     <img class="headshot" src="@imgPath" alt="">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="@Url.Action("SkillPostPage","Home")">會員基本資料</a></li>
-                                    <li><a class="dropdown-item" href="#">交換技能發文</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("MemberInfo","Home")">基本資料</a></li>
+                                    <li><a class="dropdown-item" href="#">交換技能</a></li>
+                                    <li><a class="dropdown-item" v-on:click="logout">登出</a></li>
                                 </ul>
                             </li>
                         } else {
@@ -83,4 +84,17 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+<script>
+    new Vue({
+        el:"#header-nav",
+        methods:{
+            logout: function(){
+                axios.get("../Register/Logout")
+                .then(res => {
+                    window.location.href=res.data;
+                });
+            }
+        }
+    });
+</script>
 </html>
