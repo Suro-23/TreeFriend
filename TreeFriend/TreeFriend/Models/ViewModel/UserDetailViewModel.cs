@@ -4,7 +4,7 @@ namespace TreeFriend.Models.ViewModel {
     public class UserDetailViewModel {
         public string UserName { get; set; }
 
-        public bool Sex { get; set; }
+        public string Sex { get; set; }
 
         public string Birthday { get; set; }
 

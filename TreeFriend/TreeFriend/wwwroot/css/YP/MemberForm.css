@@ -1,0 +1,27 @@
+﻿.member-content {
+    background-color: rgb(255, 255, 255);
+    padding: 1rem 0 1rem 8rem;
+    margin-left: 2rem;
+    border-radius: 1rem;
+}
+
+.profile-img {
+    width: 175px;
+    border-radius: 100%;
+}
+
+.img-file {
+    padding: 1rem 0;
+}
+
+.form-select {
+    width: 4rem;
+}
+
+.member-data .row {
+    margin: .6rem 0;
+}
+
+.input-area {
+    height: 10rem;
+}

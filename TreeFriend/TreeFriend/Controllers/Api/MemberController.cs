@@ -4,8 +4,10 @@ using TreeFriend.Models;
 using System.Linq;
 using System;
 using TreeFriend.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TreeFriend.Controllers.Api {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MemberController : ControllerBase {
@@ -15,10 +17,26 @@ namespace TreeFriend.Controllers.Api {
             _db = db;
         }
 
+        //取得當前使用者基本資料
+        [Route("GetUserInfo")]
+        [HttpGet]
+        public UserDetailViewModel GetUserInfo() {
+            int userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+            var memberInfo = _db.usersDetail.FirstOrDefault(u => u.UserId == userId);
+            UserDetailViewModel userDetail = new UserDetailViewModel() {
+                UserName = memberInfo.UserName,
+                Birthday = memberInfo.Birthday.ToString("yyyy-MM-dd"),
+                Sex = memberInfo.Sex == true? "1":"0",
+                SelfIntrodution = memberInfo.SelfIntrodution,
+                HeadshotPath = memberInfo.HeadshotPath
+            };
+            return userDetail;
+        }
+
         //編輯基本資料
-        [Route("EditMemberInfo")]
-        [HttpPost]
-        public string EditMemberInfo([FromBody] UserDetailViewModel userVM) {
+        [Route("UpdateUserInfo")]
+        [HttpPut]
+        public string UpdateUserInfo([FromBody] UserDetailViewModel userVM) {
             //獲取Cookies中的UserId後找尋該筆Entity資料
             int userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
             var memberInfo = _db.usersDetail.FirstOrDefault(u => u.UserId == userId);
@@ -31,7 +49,7 @@ namespace TreeFriend.Controllers.Api {
             try {
                 memberInfo.UserName = userVM.UserName;
                 memberInfo.Birthday = birthDay;
-                memberInfo.Sex = userVM.Sex;
+                memberInfo.Sex = userVM.Sex == "1"? true:false;
                 memberInfo.HeadshotPath = userVM.HeadshotPath;
                 memberInfo.SelfIntrodution = userVM.SelfIntrodution;
                 _db.SaveChanges();

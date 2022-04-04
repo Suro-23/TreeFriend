@@ -38,10 +38,10 @@ header {
                 padding: 0 .5rem;
             }
 
-.headshot {
+/*.headshot {
     display: flex;
     align-items: center;
-}
+}*/
 
     .headshot img {
         width: 50px;

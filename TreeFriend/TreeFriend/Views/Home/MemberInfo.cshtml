@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "_Member";
+}
+<link href="~/css/YP/MemberForm.css" rel="stylesheet" />
+
+<div id="app" class="col-12 member-data">
+    <div class="row profile-img-div">
+        <div class="col-4">
+            <img class="profile-img" :src="userInfo.headshotPath" alt="">
+            <input class="img-file" type="file">
+        </div>
+        <div class="col-8 d-flex flex-column justify-content-between">
+            <div class="row">
+                <div class="col-3">
+                    <h3>暱稱</h3>
+                </div>
+                <div class="col-9">
+                    <input type="text" v-model="userInfo.userName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h3>性別</h3>
+                </div>
+                <div class="col-9">
+                    <select class="form-select" aria-label="Default select example" v-model="userInfo.sex">
+                        <option selected value="1">男</option>
+                        <option value="0">女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h3>生日</h3>
+                </div>
+                <div class="col-9">
+                    <input type="date" v-model="userInfo.birthday">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <h3>自我介紹</h3>
+    </div>
+    <div class="row">
+        <input class="input-area col-10" type="textarea" v-model="userInfo.selfIntrodution">
+    </div>
+    <div class="row btn-row d-flex justify-content-end">
+        <div class="col-2">
+            <button class="btn btn-success" v-on:click="editInfo">修改</button>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+<script>
+    let app = new Vue({
+        el:"#app",
+        data:{
+            userInfo:{
+                userName: "",
+                sex: "",
+                birthday: "",
+                selfIntrodution: "",
+                headshotPath: ""
+            }
+        },
+        mounted: function(){
+            const self = this;
+            axios.get("../Api/Member/GetUserInfo")
+            .then( res => {
+                const info = {userName, sex, birthday, selfIntrodution, headshotPath} = res.data;
+                self.userInfo = info;
+                console.log(self.userInfo);
+                self.userInfo.sex = self.userInfo.sex === "1"? "1":"0";
+            }).catch(err => {console.log(err)})
+        },
+        methods:{
+            editInfo:function(){
+                const self = this;
+                axios.put("../Api/Member/UpdateUserInfo",self.userInfo)
+                .then(res =>{
+                    alert(res.data);
+                    location.reload();
+                })
+                .catch(err => {console.log(err.response.data)});
+            }
+        }
+    });
+</script>
+

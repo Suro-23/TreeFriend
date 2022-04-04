@@ -24,7 +24,14 @@ namespace TreeFriend.Controllers {
         public IActionResult ProductPage() {
             return View();
         }
-
+        [Authorize]
+        public IActionResult SkillPostPage() {
+            return View();
+        }
+        [Authorize]
+        public IActionResult MemberInfo() {
+            return View();
+        }
         public IActionResult Index() {
             return View();
         }
