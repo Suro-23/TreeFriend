@@ -100,7 +100,7 @@ a {
 
 .txt-img02 {
     position: relative;
-    padding: 0 40px;
+    padding: 50px 40px 0;
 }
 
 .txt-img03 {
@@ -136,14 +136,19 @@ a {
     text-decoration: none;
 }
 
-
-
-
 .txt {
     padding: 200px 0px;
     margin-right: 10px;
 }
 
+/*學員心得*/
+.containerplus-h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    background: #d0bdb1;
+    padding: 40px 0px 0px;
+}
 .containerplus {
     position: relative;
     height: 600px;
@@ -155,59 +160,65 @@ a {
     background: #d0bdb1;
 }
 
-    .containerplus .card {
-        text-align: center;
-        margin-top: 100px;
-        position: relative;
-        max-width: 350px;
-        height: 265px;
-        background: #fff;
-        margin: 30px 10px;
-        padding: 20px 15px;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 5px 202px rgba(0, 0, 0, 0.5);
-        transition: .3s ease-in-out;
-    }
+.containerplus .card {
+    text-align: center;
+    margin-top: 100px;
+    position: relative;
+    max-width: 350px;
+    height: 265px;
+    background: #fff;
+    margin: 30px 60px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 202px rgba(0, 0, 0, 0.5);
+    transition: .3s ease-in-out;
+}
 
-        .containerplus .card:hover {
-            height: 480px;
-        }
+.containerplus .card:hover {
+    height: 480px;
+}
 
-        .containerplus .card .imgBx {
-            text-align: center;
-            position: relative;
-            width: 260px;
-            height: 260px;
-            top: -60px;
-            left: 30px;
-            z-index: 1;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
+.containerplus .card .imgBx2 {
+    text-align: center;
+    position: relative;
+    width: 260px;
+    height: 260px;
+    top: -60px;
+    left: 30px;
+    z-index: 1;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
 
-            .containerplus .card .imgBx img {
-                max-width: 100%;
-                border-radius: 4px;
-                text-align: center;
-            }
+.containerplus .card .imgBx2 img {
+    max-width: 100%;
+    border-radius: 4px;
+    text-align: center;
+}
 
-        .containerplus .card .content {
-            position: relative;
-            margin-top: -140px;
-            padding: 10px 15px;
-            text-align: center;
-            color: #111;
-            visibility: hidden;
-            opacity: 0;
-            transition: .3s ease-in-out;
-        }
+.containerplus .card .content {
+    position: relative;
+    margin-top: -140px;
+    padding: 10px 15px;
+    text-align: center;
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease-in-out;
+}
 
-        .containerplus .card:hover .content {
-            visibility: visible;
-            opacity: 1;
-            margin-top: -60px;
-            transition-delay: .3s;
-        }
+.containerplus .card:hover .content {
+    visibility: visible;
+    opacity: 1;
+    margin-top: -60px;
+    transition-delay: .3s;
+}
+
+.content-h2 {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
 
 .cardh2 {
     font-size: 25px;
@@ -216,4 +227,212 @@ a {
 .cardp {
     text-align: center;
     font-size: 15px;
+    margin: 15px 0;
+    letter-spacing: 0.1rem;
+    line-height: 1.3;
+}
+
+
+
+
+
+/* 介紹網站特性卡片 */
+.containerss {
+    font-family: '微软雅黑', sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 75vw;
+    flex-wrap: wrap;
+    margin: auto;
+    padding: 60px 0px;
+}
+
+.containerss .cardss {
+   width: 320px;
+   margin: 20px;
+   padding: 40px 30px;
+   background: rgb(230, 230, 231);
+   border-radius: 40px;
+   box-shadow: -6px -6px 20px rgba(255, 255, 255, 1), 6px 6px 20px rgba(0, 0, 0, .1);
+}
+
+.containerss .cardss .imgBx1 {
+    position: relative;
+    text-align: center;
+}
+
+.containerss .cardss .imgBx1 img {
+    max-width: 120px;
+}
+
+.containerss .cardss .contentBx1 {
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.containerss .cardss .contentBx1 h2 {
+    color: #212222;
+    font-weight: 700;
+    font-size: 1.4em;
+    letter-spacing: 2px;
+    margin: 16px 0px;
+}
+
+.containerss .cardss .contentBx1 p {
+     color: #1e1f1f;
+     margin:14px 0px;
+}
+
+
+
+
+
+
+
+
+
+/*系統推文專欄*/
+.grid-h2 {
+    text-align: center;
+    background-color: #eee;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.grid-body-headr {
+    background-color: #eee;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+
+.grid {
+    display: grid;
+    width: 70%;
+    grid-gap: 6rem;
+    grid-template-columns: repeat(auto-fit,minmax(23rem, 1fr));
+    align-items: start;
+}
+
+.grid-item {
+    background-color: #fff;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+    .grid-item:hover {
+        transform: translateY(-0.5%);
+        box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.5);
+    }
+
+.card-img {
+    display: block;
+    width: 100%;
+    height: 20rem;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.card-header {
+    font-size: 17.5px;
+    font-weight: 600;
+    color: rgb(58, 58, 58);
+    margin-bottom: 1.3rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    height: 3.5vh;
+    border: none;
+    background-color: white;
+}
+
+.card-text {
+    font-size: 14px;
+    letter-spacing: 0.1rem;
+    line-height: 1.7;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 2.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: '微软雅黑', sans-serif;
+}
+
+.card-btn {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: black;
+    background-color: #d0bdb1;
+    border: none;
+    border-radius: 0.4rem;
+    transition: 0.2s;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+}
+
+    .card-btn span {
+        margin-left: 1rem;
+        transition: 0.2s;
+    }
+
+    .card-btn:hover,
+    .card-btn:active {
+        background-color: #c2cffc;
+    }
+
+        .card-btn:hover span,
+        .card-btn:active span {
+            margin-right: 1.5rem;
+        }
+
+.link-frame {
+    margin: 770px 0 0;
+    position: relative;
+    right: 102px;
+}
+
+.link-frame-a
+{
+    color:black;
+}
+
+.link-frame-a:hover {
+        color: #a8bbbf;
+}
+
+@media only screen and (max-width: 60em) {
+    .grid-body-headr {
+        padding: 3rem;
+    }
+
+    .grid {
+        grid-gap: 3rem;
+    }
 }

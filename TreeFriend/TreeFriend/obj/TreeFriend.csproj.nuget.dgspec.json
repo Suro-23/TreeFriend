@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {}
+    "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {
+    "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+        "projectUniqueName": "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
         "projectName": "TreeFriend",
-        "projectPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
-        "packagesPath": "C:\\Users\\edc54\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\edc54\\OneDrive\\桌面\\專題整合\\TreeFriend\\TreeFriend\\TreeFriend\\obj\\",
+        "projectPath": "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+        "packagesPath": "C:\\Users\\HBJ\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\edc54\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HBJ\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,12 +73,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -87,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }
