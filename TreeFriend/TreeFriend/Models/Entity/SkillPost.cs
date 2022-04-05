@@ -28,6 +28,7 @@ namespace TreeFriend.Models.Entity {
 
         public DateTime CreateDate { get; set; }
 
+        //是否為啟用狀態，flase為刪除貼文(軟刪除)
         [Required]
         public bool Status { get; set; } = true;
 
