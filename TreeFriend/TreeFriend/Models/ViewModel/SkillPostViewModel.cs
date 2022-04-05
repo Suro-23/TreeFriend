@@ -9,6 +9,6 @@
 
         public string Content { get; set; }
 
-        public int HashtagId { get; set; }
+        public int[] HashtagId { get; set; }
     }
 }

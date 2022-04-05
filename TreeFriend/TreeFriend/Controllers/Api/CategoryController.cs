@@ -8,7 +8,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 
 namespace TreeFriend.Controllers.Api {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Member")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase {
@@ -48,6 +48,7 @@ namespace TreeFriend.Controllers.Api {
         }
 
         //新增類別
+        [Authorize(Roles ="Admin")]
         [Route("AddCategory")]
         [HttpPost]
         public bool AddCategory([FromBody] Category category) {
@@ -66,6 +67,7 @@ namespace TreeFriend.Controllers.Api {
         }
 
         //刪除類別
+        [Authorize(Roles = "Admin")]
         [Route("DeleteCategory")]
         [HttpDelete]
         public bool DeleteCategory(int categoryId) {
@@ -103,6 +105,7 @@ namespace TreeFriend.Controllers.Api {
         }
 
         //新增標籤
+        [Authorize(Roles = "Admin")]
         [Route("AddHashTag")]
         [HttpPost]
         public bool AddTag([FromBody] Hashtag hashtag) {
@@ -121,6 +124,7 @@ namespace TreeFriend.Controllers.Api {
         }
 
         //刪除類別
+        [Authorize(Roles = "Admin")]
         [Route("DeleteHashtag")]
         [HttpDelete]
         public bool DeleteHashtag(int hashtagId) {
