@@ -284,7 +284,8 @@ a {
 
 .containerss .cardss .contentBx1 p {
      color: #1e1f1f;
-     margin:14px 0px;
+     margin: 14px 0px;
+     line-height: 1.3;
 }
 
 
@@ -296,29 +297,31 @@ a {
 
 
 /*系統推文專欄*/
+
+
 .grid-h2 {
-    text-align: center;
-    background-color: #eee;
-    font-size: 50px;
     font-weight: 700;
+    font-size: 40px;
+    padding: 20px 0;
+    background-color: #efeeee
 }
 
 .grid-body-headr {
     background-color: #eee;
     font-family: "Poppins", sans-serif;
-    display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    min-height: 100vh;
 }
 
 
 .grid {
-    display: grid;
-    width: 70%;
-    grid-gap: 6rem;
-    grid-template-columns: repeat(auto-fit,minmax(23rem, 1fr));
+    display: flex;
+    width: 80%;
+    grid-gap: 2.5%;
+    grid-template-columns: repeat(auto-fit,minmax(30rem, 1fr));
     align-items: start;
+    margin: 0 auto;
 }
 
 .grid-item {
@@ -327,8 +330,7 @@ a {
     overflow: hidden;
     box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    box-sizing: border-box;
-    font-size: 62.5%;
+    width: 100%;
 }
 
     .grid-item:hover {
@@ -339,23 +341,23 @@ a {
 .card-img {
     display: block;
     width: 100%;
-    height: 20rem;
+    height: 30vh;
     object-fit: cover;
 }
 
 .card-content {
-    padding: 1.5rem;
+    padding: 15px;
 }
 
-a:hover {
+.grid-item a {
     text-decoration: none;
 }
 
 .card-header {
-    font-size: 17.5px;
+    font-size: 18px;
     font-weight: 600;
     color: rgb(58, 58, 58);
-    margin-bottom: 1.3rem;
+    margin-bottom: 18px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -363,38 +365,39 @@ a:hover {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     white-space: normal;
-    height: 3.5vh;
+    height: 6.5vh;
     border: none;
     background-color: white;
+    padding: .3rem;
+    line-height: 1.2;
 }
 
 .card-text {
     font-size: 14px;
     letter-spacing: 0.1rem;
-    line-height: 1.7;
+    line-height: 1.4;
     color: rgba(0, 0, 0, 0.6);
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.8rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    font-family: '微软雅黑', sans-serif;
 }
 
 .card-btn {
     display: block;
     width: 100%;
-    padding: 1.5rem;
-    font-size: 1.5rem;
+    padding: 16px;
+    font-size: 25px;
     font-weight: 700;
     text-align: center;
-    color: black;
+    color: #837871;
     background-color: #d0bdb1;
     border: none;
     border-radius: 0.4rem;
     transition: 0.2s;
     cursor: pointer;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.1rem;
 }
 
     .card-btn span {
@@ -407,28 +410,31 @@ a:hover {
         background-color: #c2cffc;
     }
 
-        .card-btn:hover span,
-        .card-btn:active span {
-            margin-right: 1.5rem;
-        }
-
-.link-frame {
-    margin: 770px 0 0;
-    position: relative;
-    right: 102px;
+.card-btn:hover span,
+.card-btn:active span {
+     margin-right: 1.5rem;
 }
 
-.link-frame-a
-{
-    color:black;
+.link-frame {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 30px;
+    text-align: right;
+}
+
+.link-frame-a {
+    text-decoration: none;
+    color: #857971;
 }
 
 .link-frame-a:hover {
-        color: #a8bbbf;
+    text-decoration: none;
+    color: #9a9796;
 }
 
-@media only screen and (max-width: 60em) {
-    .grid-body-headr {
+
+    @media only screen and (max-width: 60em) {
+        .grid-body-headr {
         padding: 3rem;
     }
 

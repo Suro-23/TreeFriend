@@ -7249,19 +7249,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HBJ\\.nuget\\packages\\": {}
+    "C:\\Users\\Tibame\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+      "projectUniqueName": "C:\\Users\\Tibame\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
       "projectName": "TreeFriend",
-      "projectPath": "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
-      "packagesPath": "C:\\Users\\HBJ\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HBJ\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\obj\\",
+      "projectPath": "C:\\Users\\Tibame\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\TreeFriend.csproj",
+      "packagesPath": "C:\\Users\\Tibame\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Tibame\\Documents\\GitHub\\TreeFriend\\TreeFriend\\TreeFriend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HBJ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Tibame\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
