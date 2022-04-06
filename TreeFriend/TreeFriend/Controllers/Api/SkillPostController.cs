@@ -6,6 +6,7 @@ using System.Linq;
 using TreeFriend.Models.ViewModel;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace TreeFriend.Controllers.Api {
     [Authorize]
@@ -56,6 +57,58 @@ namespace TreeFriend.Controllers.Api {
             } catch (Exception) {
                 return "新增失敗";
             }
+        }
+
+        [HttpGet]
+        [Route("GetAllSkillPost")]
+        public List<SkillPostViewModel> GetAllSkillPost() {
+            int userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+
+            //拿到該使用者的所有貼文
+            var skillPostList = _db.skillPosts.Where(p => p.UserId == userId && p.Status == true).OrderByDescending(e => e.SkillPostId);
+
+            //將skillPostList join hashtagDetail 拿到所有文章的所有標籤
+            //存成新物件備用
+            var skillPostJoin = _db.hashtagDetails.Join(skillPostList,
+                h => h.SkillPostId,
+                p => p.SkillPostId,
+                (h, p) => new {
+                    SkillPostId = p.SkillPostId,
+                    Title = p.Title,
+                    CategoryId = p.CategoryId,
+                    Content = p.Content,
+                    Region = p.Region,
+                    HashtagId = h.HashtagId
+                }).ToList();
+
+            //參考資料: https://docs.microsoft.com/zh-tw/dotnet/csharp/linq/group-query-results
+            //將文章分組備用
+            //分完後的樣子會變成
+            //postID_1:
+            //      sqlRow1,sqlRow2,sqlRow3
+            //postID_2:
+            //      sqlRow1,sqlRow2
+            var groupList = from skPost in skillPostJoin
+                            group skPost by skPost.SkillPostId into newGroup
+                            orderby newGroup.Key
+                            select newGroup;
+            //創建一個集合備用
+            List<SkillPostViewModel> ressultList = new();
+
+            //將分組資料依序塞入陣列中
+            //這裡的遍歷是根據
+            foreach (var group in groupList) {
+                ressultList.Add(
+                    new SkillPostViewModel {
+                        Title = group.Select(x => x.Title).FirstOrDefault(),
+                        CategoryId = group.Select(x => x.CategoryId).FirstOrDefault(),
+                        Content = group.Select(x => x.Content).FirstOrDefault(),
+                        Region = group.Select(x => x.Region).FirstOrDefault(),
+                        HashtagId = group.Select(x => x.HashtagId).ToArray()
+                    });
+            }
+
+            return ressultList;
         }
         #endregion
 
