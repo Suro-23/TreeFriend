@@ -16,31 +16,39 @@ namespace TreeFriend.Controllers {
             _logger = logger;
         }
 
+        //首頁
         [AllowAnonymous]
         public IActionResult HomePage() {
             return View();
         }
 
+        //講座
         [AllowAnonymous]
         public IActionResult ProductPage() {
             return View();
         }
 
+        //發布技能貼文
         [Authorize]
         public IActionResult SkillPostPage() {
             return View();
         }
 
+        //歷史技能貼文
+        [Authorize]
+        public IActionResult AllSkillPost() {
+            return View();
+        }
+
+        //編輯個人資訊
         [Authorize]
         public IActionResult MemberInfo() {
             return View();
         }
 
-        public IActionResult Index() {
-            return View();
-        }
 
-        public IActionResult Privacy() {
+
+        public IActionResult Index() {
             return View();
         }
 

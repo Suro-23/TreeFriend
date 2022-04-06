@@ -849,7 +849,6 @@ C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\TreeFriend.RazorCoreGenerate.cache
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Admin\AddCategory.cshtml.g.cs
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Home\HomePage.cshtml.g.cs
-C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Home\MemberInfo.cshtml.g.cs
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Home\ProductPage.cshtml.g.cs
@@ -870,3 +869,5 @@ C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\TreeFriend.pdb
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\TreeFriend.genruntimeconfig.cache
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Home\SkillPostPage.cshtml.g.cs
+C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\TreeFriend.csproj.AssemblyReference.cache
+C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\Razor\Views\Home\AllSkillPost.cshtml.g.cs
