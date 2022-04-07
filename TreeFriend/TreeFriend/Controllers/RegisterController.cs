@@ -107,7 +107,7 @@ namespace TreeFriend.Controllers {
                 return View("Create");
             } else {
                 //YP : 登入時順便檢查身分，並獲得頭像
-                var img = _context.usersDetail.Where(u => u.UserId == check.UserId).FirstOrDefault();
+                var user = _context.usersDetail.Where(u => u.UserId == check.UserId).FirstOrDefault();
 
                 var UserLevel = check.UserLevel == true ? "Admin" : "Member";
                 var claims = new List<Claim>()
@@ -116,7 +116,8 @@ namespace TreeFriend.Controllers {
                     new Claim(ClaimTypes.Email,check.Email),
                     new Claim("UserId",check.UserId.ToString()),
                     new Claim(ClaimTypes.Role,UserLevel),
-                    new Claim("Headshot",img.HeadshotPath)
+                    new Claim("Headshot",user.HeadshotPath),
+                    new Claim("UserName",user.UserName)
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -65,10 +65,10 @@ namespace TreeFriend.Controllers.Api {
             int userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
 
             //拿到該使用者的所有貼文
+            //將skillPostList join hashtagDetail 拿到所有文章的所有標籤ID
+            //存成新物件備用
             var skillPostList = _db.skillPosts.Where(p => p.UserId == userId && p.Status == true).OrderByDescending(e => e.SkillPostId);
 
-            //將skillPostList join hashtagDetail 拿到所有文章的所有標籤
-            //存成新物件備用
             var skillPostJoin = _db.hashtagDetails.Join(skillPostList,
                 h => h.SkillPostId,
                 p => p.SkillPostId,
@@ -79,7 +79,34 @@ namespace TreeFriend.Controllers.Api {
                     Content = p.Content,
                     Region = p.Region,
                     HashtagId = h.HashtagId
+                });
+
+            //將categoryId 轉成 categoryName 供前端使用
+            var skillPostJoinCategory = _db.categories.Join(skillPostJoin,
+                c => c.CategoryId,
+                s => s.CategoryId,
+                (c, s) => new {
+                    SkillPostId = s.SkillPostId,
+                    Title = s.Title,
+                    CategoryName = c.CategoryName,
+                    Content = s.Content,
+                    Region = s.Region,
+                    HashtagId = s.HashtagId
+                });
+
+            //將剛才查詢到的資料表在join Hashtag資料表把ID轉成name
+            var skillPostJoinName = _db.hashtags.Join(skillPostJoinCategory,
+                h => h.HashtagId,
+                s => s.HashtagId,
+                (h ,s) => new {
+                    SkillPostId = s.SkillPostId,
+                    Title = s.Title,
+                    CategoryName = s.CategoryName,
+                    Content = s.Content,
+                    Region = s.Region,
+                    HashtagName = h.HashtagName
                 }).ToList();
+
 
             //參考資料: https://docs.microsoft.com/zh-tw/dotnet/csharp/linq/group-query-results
             //將文章分組備用
@@ -88,7 +115,7 @@ namespace TreeFriend.Controllers.Api {
             //      sqlRow1,sqlRow2,sqlRow3
             //postID_2:
             //      sqlRow1,sqlRow2
-            var groupList = from skPost in skillPostJoin
+            var groupList = from skPost in skillPostJoinName
                             group skPost by skPost.SkillPostId into newGroup
                             orderby newGroup.Key
                             select newGroup;
@@ -100,11 +127,12 @@ namespace TreeFriend.Controllers.Api {
             foreach (var group in groupList) {
                 ressultList.Add(
                     new SkillPostViewModel {
+                        UserName = HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserName").Value,
                         Title = group.Select(x => x.Title).FirstOrDefault(),
-                        CategoryId = group.Select(x => x.CategoryId).FirstOrDefault(),
+                        CategoryName = group.Select(x => x.CategoryName).FirstOrDefault(),
                         Content = group.Select(x => x.Content).FirstOrDefault(),
                         Region = group.Select(x => x.Region).FirstOrDefault(),
-                        HashtagId = group.Select(x => x.HashtagId).ToArray()
+                        HashtagName = group.Select(x => x.HashtagName).ToArray()
                     });
             }
 

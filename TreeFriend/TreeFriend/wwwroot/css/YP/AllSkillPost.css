@@ -39,3 +39,7 @@
 .post-content img {
     height: 25px;
 }
+
+.post-item + .post-item {
+    margin-top: 1rem;
+}

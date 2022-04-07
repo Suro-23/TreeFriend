@@ -870,3 +870,4 @@ C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\ref\TreeFriend.dll
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\TreeFriend.pdb
 C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\TreeFriend.genruntimeconfig.cache
+C:\Users\edc54\OneDrive\桌面\專題整合\TreeFriend\TreeFriend\TreeFriend\obj\Debug\net5.0\TreeFriend.csproj.AssemblyReference.cache
