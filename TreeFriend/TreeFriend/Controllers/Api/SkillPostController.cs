@@ -63,6 +63,8 @@ namespace TreeFriend.Controllers.Api {
         [Route("GetAllSkillPost")]
         public List<SkillPostViewModel> GetAllSkillPost() {
             int userId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value);
+            string userName = HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserName").Value;
+            string headShot = HttpContext.User.Claims.FirstOrDefault(u => u.Type == "Headshot").Value;
 
             //拿到該使用者的所有貼文
             //將skillPostList join hashtagDetail 拿到所有文章的所有標籤ID
@@ -88,6 +90,7 @@ namespace TreeFriend.Controllers.Api {
                 (c, s) => new {
                     SkillPostId = s.SkillPostId,
                     Title = s.Title,
+                    CategoryId = s.CategoryId,
                     CategoryName = c.CategoryName,
                     Content = s.Content,
                     Region = s.Region,
@@ -101,9 +104,11 @@ namespace TreeFriend.Controllers.Api {
                 (h ,s) => new {
                     SkillPostId = s.SkillPostId,
                     Title = s.Title,
+                    CategoryId = s.CategoryId,
                     CategoryName = s.CategoryName,
                     Content = s.Content,
                     Region = s.Region,
+                    HashtagId = s.HashtagId,
                     HashtagName = h.HashtagName
                 }).ToList();
 
@@ -127,11 +132,16 @@ namespace TreeFriend.Controllers.Api {
             foreach (var group in groupList) {
                 ressultList.Add(
                     new SkillPostViewModel {
-                        UserName = HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserName").Value,
+                        SkillPostId = group.Key,
+                        UserId = userId,
+                        UserName = userName,
+                        UserHeadshot = headShot,
                         Title = group.Select(x => x.Title).FirstOrDefault(),
+                        CategoryId = group.Select(x =>x.CategoryId).FirstOrDefault(),
                         CategoryName = group.Select(x => x.CategoryName).FirstOrDefault(),
                         Content = group.Select(x => x.Content).FirstOrDefault(),
                         Region = group.Select(x => x.Region).FirstOrDefault(),
+                        HashtagId = group.Select(x =>x.HashtagId).ToArray(),
                         HashtagName = group.Select(x => x.HashtagName).ToArray()
                     });
             }

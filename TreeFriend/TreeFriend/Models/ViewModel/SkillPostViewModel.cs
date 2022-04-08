@@ -1,7 +1,12 @@
 ﻿namespace TreeFriend.Models.ViewModel {
     public class SkillPostViewModel {
+        public int SkillPostId { get; set; }
+
+        public int UserId { get; set; }
         //放使用者名稱，供前端使用
         public string UserName { get; set; }
+
+        public string UserHeadshot { get; set; }
         public string Title { get; set; }
 
         public int CategoryId { get; set; }

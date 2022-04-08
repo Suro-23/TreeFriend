@@ -9,7 +9,7 @@
         <div class="catgory w-auto fs-5">{{item.categoryName}}</div>
         <div class="row">
             <div class="uer-info d-flex fs-5 align-items-center">
-                <img src="~/icon/測試用頭像.jpg" alt="">
+                <img :src="item.userHeadshot" alt="">
                 <span class="ms-2">{{item.userName}}</span>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 this.skillPostList = res.data;
                 console.log(this.skillPostList);
             })
-            .catch(err => console.log(err.response));
+            .catch(err => console.log(err.response.data));
         }
     });
 </script>
