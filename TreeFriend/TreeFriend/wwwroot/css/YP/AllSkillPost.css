@@ -43,3 +43,39 @@
 .post-item + .post-item {
     margin-top: 1rem;
 }
+
+.msg-icon {
+    border: none;
+    background-color: white;
+}
+
+    .msg-icon img {
+        width: 30px;
+    }
+
+.leave-msg textarea {
+    background-color: rgb(240, 240, 240);
+}
+
+.user-msg-img img {
+    width: 45px;
+    border-radius: 100%;
+}
+
+.user-msg-content {
+    display: flex;
+    flex-direction: column;
+    margin-left: .4rem;
+    padding: .2rem .6rem;
+    background-color: rgb(240, 240, 240);
+    border-radius: 1rem;
+}
+
+.user-msg-div {
+    display: flex;
+    padding-left: 0;
+}
+
+    .user-msg-div + .user-msg-div {
+        margin-top: .5rem;
+    }
