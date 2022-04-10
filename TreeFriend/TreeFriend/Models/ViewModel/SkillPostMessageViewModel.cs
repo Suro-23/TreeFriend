@@ -4,6 +4,8 @@
 
         public int UserId { get; set; }
 
+        public string UserName { get; set; }
+
         public string UserHeadshot { get; set; }
         public string Content { get; set; }
     }

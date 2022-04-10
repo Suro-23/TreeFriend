@@ -1,4 +1,6 @@
-﻿namespace TreeFriend.Models.ViewModel {
+﻿using System.Collections.Generic;
+
+namespace TreeFriend.Models.ViewModel {
     public class SkillPostViewModel {
         public int SkillPostId { get; set; }
 
@@ -23,5 +25,10 @@
 
         //存放後端JOIN後的標籤名稱
         public string[] HashtagName { get; set; }
+
+        public List<SkillPostMessageViewModel> Message { get; set; }
+
+        //讓前端用的欄位，後端不需要使用
+        public string LeaveMsg { get; set; }
     }
 }

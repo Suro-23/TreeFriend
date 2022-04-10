@@ -71,6 +71,8 @@ namespace TreeFriend.Controllers.Api {
             //存成新物件備用
             var skillPostList = _db.skillPosts.Where(p => p.UserId == userId && p.Status == true).OrderByDescending(e => e.SkillPostId);
 
+            //拿到文章總表
+            //透過categoryId，HashtagId 關聯出 categoryName，hashtagName 供前端使用
             var skillPostJoin = _db.hashtagDetails.Join(skillPostList,
                 h => h.SkillPostId,
                 p => p.SkillPostId,
@@ -78,40 +80,12 @@ namespace TreeFriend.Controllers.Api {
                     SkillPostId = p.SkillPostId,
                     Title = p.Title,
                     CategoryId = p.CategoryId,
+                    CategoryName = p.Category.CategoryName,
                     Content = p.Content,
                     Region = p.Region,
-                    HashtagId = h.HashtagId
-                });
-
-            //將categoryId 轉成 categoryName 供前端使用
-            var skillPostJoinCategory = _db.categories.Join(skillPostJoin,
-                c => c.CategoryId,
-                s => s.CategoryId,
-                (c, s) => new {
-                    SkillPostId = s.SkillPostId,
-                    Title = s.Title,
-                    CategoryId = s.CategoryId,
-                    CategoryName = c.CategoryName,
-                    Content = s.Content,
-                    Region = s.Region,
-                    HashtagId = s.HashtagId
-                });
-
-            //將剛才查詢到的資料表在join Hashtag資料表把ID轉成name
-            var skillPostJoinName = _db.hashtags.Join(skillPostJoinCategory,
-                h => h.HashtagId,
-                s => s.HashtagId,
-                (h ,s) => new {
-                    SkillPostId = s.SkillPostId,
-                    Title = s.Title,
-                    CategoryId = s.CategoryId,
-                    CategoryName = s.CategoryName,
-                    Content = s.Content,
-                    Region = s.Region,
-                    HashtagId = s.HashtagId,
-                    HashtagName = h.HashtagName
+                    HashtagId = h.HashtagId,
+                    HashtagName = h.Hashtag.HashtagName
                 }).ToList();
-
 
             //參考資料: https://docs.microsoft.com/zh-tw/dotnet/csharp/linq/group-query-results
             //將文章分組備用
@@ -120,16 +94,30 @@ namespace TreeFriend.Controllers.Api {
             //      sqlRow1,sqlRow2,sqlRow3
             //postID_2:
             //      sqlRow1,sqlRow2
-            var groupList = from skPost in skillPostJoinName
+            var groupList = from skPost in skillPostJoin
                             group skPost by skPost.SkillPostId into newGroup
                             orderby newGroup.Key
                             select newGroup;
+
             //創建一個集合備用
             List<SkillPostViewModel> ressultList = new();
 
             //將分組資料依序塞入陣列中
             //這裡的遍歷是根據
             foreach (var group in groupList) {
+                List<SkillPostMessageViewModel> messageResult = null;
+                var messageList = _db.skillPostMessages.Where(p => p.SkillPostId == group.Key);
+                if (messageList.Count() != 0) {
+                    messageResult = messageList.Select(p => new SkillPostMessageViewModel {
+                        SkillPostId = p.SkillPostId,
+                        UserId = p.UserId,
+                        UserName = p.UserName,
+                        UserHeadshot = p.UserHeadshot,
+                        Content = p.Content
+                    }).ToList();
+                }
+
+
                 ressultList.Add(
                     new SkillPostViewModel {
                         SkillPostId = group.Key,
@@ -137,12 +125,15 @@ namespace TreeFriend.Controllers.Api {
                         UserName = userName,
                         UserHeadshot = headShot,
                         Title = group.Select(x => x.Title).FirstOrDefault(),
-                        CategoryId = group.Select(x =>x.CategoryId).FirstOrDefault(),
+                        CategoryId = group.Select(x => x.CategoryId).FirstOrDefault(),
                         CategoryName = group.Select(x => x.CategoryName).FirstOrDefault(),
                         Content = group.Select(x => x.Content).FirstOrDefault(),
                         Region = group.Select(x => x.Region).FirstOrDefault(),
-                        HashtagId = group.Select(x =>x.HashtagId).ToArray(),
-                        HashtagName = group.Select(x => x.HashtagName).ToArray()
+                        HashtagId = group.Select(x => x.HashtagId).ToArray(),
+                        HashtagName = group.Select(x => x.HashtagName).ToArray(),
+                        Message = messageResult,
+                        //讓前端用的欄位，後端不須使用
+                        LeaveMsg = null
                     });
             }
 
@@ -158,9 +149,11 @@ namespace TreeFriend.Controllers.Api {
         public void LiveSkillPostMessage([FromBody] SkillPostMessageViewModel skMessage) {
             //拿到當前使用者資訊後將留言寫入技能留言資料表中
             SkillPostMessage post = new SkillPostMessage() {
+                SkillPostId = skMessage.SkillPostId,
                 UserId = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(u => u.Type == "UserId").Value),
-                Content = skMessage.Content,
-                SkillPostId = skMessage.SkillPostId
+                UserName = User.Claims.FirstOrDefault(u => u.Type == "UserName").Value,
+                UserHeadshot = User.Claims?.FirstOrDefault(u => u.Type == "Headshot").Value,
+                Content = skMessage.Content
             };
             _db.skillPostMessages.Add(post);
             _db.SaveChanges();

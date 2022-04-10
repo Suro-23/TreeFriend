@@ -36,26 +36,20 @@
                 <img src="~/icon/message.png" alt="">
             </button>
         </div>
-        <div class="row ms-2 mb-2 pe-4 leave-msg">
-            <textarea class="col-12 user-msg border-0 rounded-2" rows="2" placeholder="留言"></textarea>
+        <div class="row ms-2 mb-2 pe-3 leave-msg justify-content-around">
+            <textarea v-model="item.leaveMsg" class="col-11 user-msg border-0 rounded-2 mb-2" rows="2" placeholder="留言"></textarea>
+            <button @@click="sendMessage(item)" class="w-auto border-0 send-msg p-0">
+                <img src="~/icon/send.png" alt="">
+            </button>
         </div>
         <div class="row user-msg ms-2 pe-4">
-            <div class="user-msg-div">
+            <div class="user-msg-div" v-for="msg in item.message">
                 <div class="user-msg-img">
-                    <img :src="item.userHeadshot" alt="">
+                    <img :src="msg.userHeadshot" alt="">
                 </div>
                 <div class="user-msg-content">
-                    <span class="fw-bold">測試猿</span>
-                    <span>Lorem ipsum dolor sit amet consectetur.Lorem ipsum dolor sit amet consectetur.</span>
-                </div>
-            </div>
-            <div class="user-msg-div">
-                <div class="user-msg-img">
-                    <img :src="item.userHeadshot" alt="">
-                </div>
-                <div class="user-msg-content">
-                    <span class="fw-bold">測試猿</span>
-                    <span>Lorem ipsum dolor sit.</span>
+                    <span class="fw-bold">{{msg.userName}}</span>
+                    <span>{{msg.content}}</span>
                 </div>
             </div>
         </div>
@@ -67,7 +61,11 @@
     let app = new Vue({
         el:"#app",
         data:{
-            skillPostList:[]
+            skillPostList:[],
+            message:{
+                skillPostId:"",
+                content:""
+            }
         },
         mounted: function(){
             axios.get("../Api/SkillPost/GetAllSkillPost")
@@ -76,6 +74,21 @@
                 console.log(this.skillPostList);
             })
             .catch(err => console.log(err.response.data));
+        },
+        methods:{
+            sendMessage: function(e){
+                const self = this;
+                if(e.leaveMsg.trim() !=""){
+                    self.message.skillPostId = e.skillPostId;
+                    self.message.content = e.leaveMsg;
+                    axios.post("../Api/SkillPost/SkPostMessage",self.message)
+                    .then(res =>{
+                        alert("留言成功");
+                        self.message = new msg();
+                    })
+                    .catch(err => err.response);
+                }
+            }
         }
     });
 </script>

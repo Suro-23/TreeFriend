@@ -36,6 +36,10 @@
         border: 1px solid rgb(139, 184, 167);
     }
 
+    .hashtag span + span{
+        margin-left: .5rem;
+    }
+
 .post-content img {
     height: 25px;
 }
@@ -78,4 +82,12 @@
 
     .user-msg-div + .user-msg-div {
         margin-top: .5rem;
+    }
+
+.send-msg {
+    background-color: white;
+}
+
+    .send-msg img {
+        width: 25px;
     }
