@@ -5,6 +5,9 @@
 <link href="~/css/YP/AllSkillPost.css" rel="stylesheet" />
 
 <div id="app">
+    <div class="w-100 text-center" v-if="noPost">
+        <h1>尚無貼文</h1>
+    </div>
     <div class="row post-item" v-for="item in skillPostList">
         <div class="catgory w-auto fs-5">{{item.categoryName}}</div>
         <div class="row">
@@ -58,20 +61,33 @@
 
 
 <script>
+    class msg{
+        constructor(){
+            this.skillPostId ="";
+            this.content ="";
+        }
+    }
     let app = new Vue({
         el:"#app",
         data:{
             skillPostList:[],
-            message:{
-                skillPostId:"",
-                content:""
-            }
+            //message:{
+            //    skillPostId:"",
+            //    content:""
+            //},
+            message: new msg(),
+            noPost:false
         },
         mounted: function(){
+            const self = this;
             axios.get("../Api/SkillPost/GetAllSkillPost")
             .then(res =>{
-                this.skillPostList = res.data;
-                console.log(this.skillPostList);
+                if(res.data.length !== 0){
+                    this.skillPostList = res.data;
+                    console.log(this.skillPostList);
+                }else{
+                    self.noPost = true;
+                }
             })
             .catch(err => console.log(err.response.data));
         },
@@ -85,6 +101,7 @@
                     .then(res =>{
                         alert("留言成功");
                         self.message = new msg();
+                        e.leaveMsg = "";
                     })
                     .catch(err => err.response);
                 }
