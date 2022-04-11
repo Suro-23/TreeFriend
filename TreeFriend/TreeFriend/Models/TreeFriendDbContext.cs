@@ -17,7 +17,7 @@ namespace TreeFriend.Models {
         
         public DbSet<SkillPostMessage> skillPostMessages{ get; set; }
 
-
+        public DbSet<Lecture> Lectures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             //指定日期使用SQL getdate() 自動取得當前時間

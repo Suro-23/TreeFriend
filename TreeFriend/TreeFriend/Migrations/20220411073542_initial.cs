@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TreeFriend.Migrations
 {
-    public partial class v1 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,9 @@ namespace TreeFriend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SkillPostId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserHeadshot = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -75,6 +77,39 @@ namespace TreeFriend.Migrations
                     table.PrimaryKey("PK_hashtags", x => x.HashtagId);
                     table.ForeignKey(
                         name: "FK_hashtags_users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Lectures",
+                columns: table => new
+                {
+                    LectureId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Theme = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventDate = table.Column<DateTime>(type: "date", nullable: false),
+                    EventTimeStart = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EventTimeEnd = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Venue = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Speaker = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ImgPath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDelete = table.Column<bool>(type: "bit", nullable: false),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lectures", x => x.LectureId);
+                    table.ForeignKey(
+                        name: "FK_Lectures_users_UserId",
                         column: x => x.UserId,
                         principalTable: "users",
                         principalColumn: "UserId",
@@ -227,6 +262,11 @@ namespace TreeFriend.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Lectures_UserId",
+                table: "Lectures",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersonalPost_UserId",
                 table: "PersonalPost",
                 column: "UserId");
@@ -251,6 +291,9 @@ namespace TreeFriend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "hashtagDetails");
+
+            migrationBuilder.DropTable(
+                name: "Lectures");
 
             migrationBuilder.DropTable(
                 name: "PersonalPost");

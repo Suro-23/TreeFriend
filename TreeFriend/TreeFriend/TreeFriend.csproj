@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\LecturePicture\" />
     <Folder Include="wwwroot\UploadHeadshot\" />
   </ItemGroup>
 

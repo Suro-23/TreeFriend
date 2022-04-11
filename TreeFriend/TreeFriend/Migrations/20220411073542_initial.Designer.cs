@@ -10,8 +10,8 @@ using TreeFriend.Models;
 namespace TreeFriend.Migrations
 {
     [DbContext(typeof(TreeFriendDbContext))]
-    [Migration("20220405093304_v1")]
-    partial class v1
+    [Migration("20220411073542_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,6 +76,71 @@ namespace TreeFriend.Migrations
                     b.HasIndex("SkillPostId");
 
                     b.ToTable("hashtagDetails");
+                });
+
+            modelBuilder.Entity("TreeFriend.Models.Entity.Lecture", b =>
+                {
+                    b.Property<int>("LectureId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EventDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("EventTimeEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EventTimeStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImgPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Speaker")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Theme")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Venue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LectureId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Lectures");
                 });
 
             modelBuilder.Entity("TreeFriend.Models.Entity.PersonalPost", b =>
@@ -225,8 +290,16 @@ namespace TreeFriend.Migrations
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
+                    b.Property<string>("UserHeadshot")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SkillPostMessageId");
 
@@ -338,6 +411,17 @@ namespace TreeFriend.Migrations
                     b.Navigation("SkillPost");
                 });
 
+            modelBuilder.Entity("TreeFriend.Models.Entity.Lecture", b =>
+                {
+                    b.HasOne("TreeFriend.Models.Entity.User", "User")
+                        .WithMany("Lectures")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TreeFriend.Models.Entity.PersonalPost", b =>
                 {
                     b.HasOne("TreeFriend.Models.Entity.User", "User")
@@ -410,6 +494,8 @@ namespace TreeFriend.Migrations
                     b.Navigation("Categories");
 
                     b.Navigation("Hashtags");
+
+                    b.Navigation("Lectures");
 
                     b.Navigation("Posts");
 
