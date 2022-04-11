@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="~/css/Layout/Member.css" rel="stylesheet" />
+    <link href="~/css/Layout/Post.css" rel="stylesheet" />
     @*<link rel="stylesheet" href="~/css/Reset.css" />*@
     @*<link rel="stylesheet" href="~/css/HomePage.css" />*@
     @*<link rel="stylesheet" href="~/css/site.css" />*@
@@ -32,9 +32,6 @@
                             <a class="nav-link" href="@Url.Action("AddCategory","Admin")">管理員</a>
                         </li>
                     }
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("AllSkillPostPage","Home")">技能貼文</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("ProductPage","Home")">講座</a>
                     </li>
@@ -69,18 +66,26 @@
         <div class="row justify-content-center">
             <div class="member-div col-2 member-nav-list">
                 <div class="member-header-text">
-                    <div class="col text-center">會員後臺管理</div>
+                    <div class="col text-center">貼文分類</div>
                 </div>
                 <div class="row">
-                    <a class="col text-center" href="@Url.Action("MemberInfo","Home")">基本資料</a>
+                    <div class="col text-center">全部</div>
                 </div>
                 <div class="row">
-                    <a class="col text-center" href="@Url.Action("PersonalAllSkillPost","Home")">歷史貼文</a>
+                    <div class="col text-center">交換技能</div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">找學生</div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">找老師</div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">讀書會</div>
                 </div>
             </div>
             <div class="member-div col-8 member-content">
                 @RenderBody()
-
             </div>
         </div>
     </div>

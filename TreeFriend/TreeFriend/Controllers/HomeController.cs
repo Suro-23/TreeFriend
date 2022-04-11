@@ -22,6 +22,11 @@ namespace TreeFriend.Controllers {
             return View();
         }
 
+        [AllowAnonymous]
+        public IActionResult AllSkillPostPage() {
+            return View();
+        }
+
         //講座
         [AllowAnonymous]
         public IActionResult ProductPage() {
@@ -30,13 +35,13 @@ namespace TreeFriend.Controllers {
 
         //發布技能貼文
         [Authorize]
-        public IActionResult SkillPostPage() {
+        public IActionResult AddSkillPostPage() {
             return View();
         }
 
         //歷史技能貼文
         [Authorize]
-        public IActionResult AllSkillPost() {
+        public IActionResult PersonalAllSkillPost() {
             return View();
         }
 
