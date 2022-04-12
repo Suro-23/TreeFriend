@@ -71,16 +71,12 @@
         el:"#app",
         data:{
             skillPostList:[],
-            //message:{
-            //    skillPostId:"",
-            //    content:""
-            //},
             message: new msg(),
             noPost:false
         },
         mounted: function(){
             const self = this;
-            axios.get("../Api/SkillPost/GetAllSkillPost")
+            axios.get("../Api/SkillPost/GetAllPersonalSkillPost")
             .then(res =>{
                 if(res.data.length !== 0){
                     this.skillPostList = res.data;
